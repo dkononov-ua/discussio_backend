@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: my_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: discuss32144  # Replace 'your_password' with your desired password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3333:3306"
+
+  create_db:
+    links:
+      - "mysql:database4321"
+    depends_on:
+      - mysql
+    build: create_DB/
+
+  create_table:
+    links:
+      - "mysql:database4321"
+    depends_on:
+      - create_db
+    build: create_table/
+    
+  backend:
+    links:
+      - "mysql:database4321"
+    depends_on:
+      - create_table
+    build: backend/
+    ports:
+      - "8000:3000"
+
+volumes:
+  mysql_data:
