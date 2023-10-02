@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import fs from 'fs'
+import * as fs from 'fs'
 
 const httpsOptions = {
   key: fs.readFileSync('./secrets/cert.key'),
