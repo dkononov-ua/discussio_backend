@@ -4,8 +4,8 @@ import { AppModule } from './app.module';
 import * as fs from 'fs'
 
 const httpsOptions = {
-  key: fs.readFileSync('./secrets/cert.key'),
-  cert: fs.readFileSync('./secrets/cert.crt'),
+  key: fs.readFileSync('./secrets/privkey.pem'),
+  cert: fs.readFileSync('./secrets/cert.pem'),
 };
 
 async function bootstrap() {
